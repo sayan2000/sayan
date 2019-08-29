@@ -1,0 +1,17 @@
+module add_test;
+reg[15:0] A,B;
+wire[15:0] C;
+wire cr;
+add_16 a_16(.X(A),.Y(B),.Z(C),.Carry(cr));
+initial
+begin
+$dumpfile("a_16.vcd");
+$dumpvars(0,add_test);
+$monitor($time,"A=%h,B=%h,C=%h,cr=%b",A,B,C,cr);
+#5 A=16'h57cf;B=16'h05cc;
+#5 A=16'h1200;B=16'hac0a;
+#5 A=16'h5266;B=16'hafbd;
+#5 A=16'hc6de;B=16'h33af;
+#5 $finish;
+end 
+endmodule

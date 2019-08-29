@@ -1,0 +1,19 @@
+module add_4(A,B,C,Cout,Cin);
+input[3:0]A,B;
+output[3:0]C;
+output Cout;
+input Cin;
+assign{C,Cout}=A+B+Cin;
+endmodule
+
+module add_16(X,Y,Z,Carry);
+input[15:0] X,Y;
+output[15:0] Z;
+output Carry;
+wire c[2:0];
+add_4 A0(X[3:0],Y[3:0],Z[3:0],c[0],1'b0);
+add_4 A1(X[7:4],Y[7:4],Z[7:4],c[1],c[0]);
+add_4 A2(X[11:8],Y[11:8],Z[11:8],c[2],c[1]);
+add_4 A3(X[15:12],Y[15:12],Z[15:12],Carry,c[2]);
+
+endmodule
